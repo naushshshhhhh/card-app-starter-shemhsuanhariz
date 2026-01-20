@@ -23,14 +23,23 @@ body {
 }
 
 /* --- 2. LAYOUT & NAVBAR --- */
+/* --- 2. LAYOUT & NAVBAR (AMENDED) --- */
 .navbar {
   background-color: #ffffff;
   border-bottom: 1px solid #e2e8f0;
   padding: 1rem 2rem;
   display: flex;
-  gap: 20px;
+  /* This pushes the brand to the left and links to the right */
+  justify-content: space-between; 
   align-items: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Container for the navigation titles */
+.nav-links {
+  display: flex;
+  /* INCREASE THIS VALUE to add more space between titles */
+  gap: 30px; 
 }
 
 .navbar a {
@@ -38,6 +47,18 @@ body {
   color: var(--text-main);
   font-weight: 600;
   font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.navbar a:hover {
+  color: var(--primary-color);
+}
+
+/* Style for the active page link */
+.navbar a.active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 4px;
 }
 
 .navbar a.active {
