@@ -1,31 +1,30 @@
+/**
+ * src/components/Card.js
+ */
 import { Link } from "react-router-dom";
 
-export default function Card({ card, onDelete, busy }) {
+export default function Card({ card, onDelete }) {
   return (
     <div className="card">
-      {/* Display image if it exists, otherwise show a placeholder text */}
-      {card.card_pic ? (
-        <img src={card.card_pic} alt={card.card_name} className="card-image" />
-      ) : (
-        <div className="card-placeholder">No Image</div>
-      )}
-      
-      <div className="card-content">
-        <h3>{card.card_name || "Unnamed Card"}</h3>
+      <img 
+        src={card.card_pic} 
+        alt={card.card_name} 
+        style={{ width: "100%", height: "200px", objectFit: "cover" }} 
+      />
+      <div className="container">
+        <h3>{card.card_name}</h3>
         <p>ID: {card.id}</p>
         
-        <div className="card-actions">
-          <Link to={`/cards/${card.id}/edit`} className="button secondary">
-            Edit
-          </Link>
-          <button 
-            onClick={() => onDelete(card.id)} 
-            disabled={busy}
-            className="button danger"
-          >
-            Delete
-          </button>
-        </div>
+        <Link to={`/cards/${card.id}/edit`}>
+          <button>Edit</button>
+        </Link>
+        
+        <button 
+          onClick={() => onDelete(card.id)} 
+          style={{ marginLeft: "10px", backgroundColor: "red", color: "white" }}
+        >
+          Delete
+        </button>
       </div>
     </div>
   );
