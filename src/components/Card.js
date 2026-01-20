@@ -8,7 +8,6 @@ export default function Card({ card, onDelete, busy }) {
         <img 
           src={card.card_pic} 
           alt={card.card_name} 
-          style={{ width: "100%", height: "150px", objectFit: "cover" }} 
         />
       )}
       
