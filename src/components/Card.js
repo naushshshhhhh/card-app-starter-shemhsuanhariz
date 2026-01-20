@@ -17,12 +17,12 @@ export default function Card({ card, onDelete, busy }) {
         <p><small>ID: {card.id}</small></p>
         
         <div className="card-actions">
-          {/* Link to the Edit page, passing the ID in the URL */}
-          <Link to={`/edit/${card.id}`} className="button secondary">
+          {/* FIXED: Updated URL to match App.js route */}
+          <Link to={`/cards/${card.id}/edit`} className="button secondary">
             Edit
           </Link>
 
-          {/* Delete button: calls the onDelete function passed from the parent */}
+          {/* Delete button */}
           <button 
             onClick={() => onDelete(card)} 
             disabled={busy}
