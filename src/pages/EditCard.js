@@ -26,6 +26,9 @@ export default function EditCard() {
 
   async function handleSubmit(values) {
     setBusy(true);
+    // Clear previous errors before trying again
+    setError(""); 
+    
     try {
       await updateCard(id, values);
       navigate("/cards");
@@ -36,13 +39,20 @@ export default function EditCard() {
     }
   }
 
-  if (error) return <p>{error}</p>;
-  if (!initialValues) return <p>Loading card data...</p>;
+  // Only block the page if we don't have data yet
+  if (!initialValues && !error) return <p>Loading card data...</p>;
+  if (!initialValues && error) return <p>{error}</p>;
 
   return (
     <main className="form-container">
       <h1>Edit Card</h1>
-      <CardForm initialValues={initialValues} onSubmit={handleSubmit} busy={busy} />
+      <CardForm 
+        initialValues={initialValues} 
+        onSubmit={handleSubmit} 
+        busy={busy} 
+        // Pass the error here so it shows inside the form!
+        error={error} 
+      />
     </main>
   );
 }
