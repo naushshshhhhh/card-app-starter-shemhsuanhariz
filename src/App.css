@@ -1,9 +1,190 @@
-/*
-  Styling is intentionally NOT provided.
+/* --- 1. GLOBAL VARIABLES & RESET --- */
+:root {
+  --primary-color: #2563eb;       /* Blue */
+  --primary-hover: #1d4ed8;
+  --danger-color: #ef4444;        /* Red */
+  --danger-hover: #b91c1c;
+  --secondary-color: #64748b;     /* Grey */
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --radius: 8px;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
 
-  TODO: Design your own UI:
-  - layout (grid/cards/table)
-  - typography
-  - buttons/forms
-  - spacing and responsiveness
-*/
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+/* --- 2. LAYOUT & NAVBAR --- */
+.navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.navbar a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.navbar a:hover {
+  color: var(--primary-color);
+}
+
+.page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* --- 3. TYPOGRAPHY & HEADER --- */
+h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--text-main);
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* --- 4. CARD GRID --- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+/* --- 5. INDIVIDUAL CARD --- */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #e2e8f0;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-body h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+}
+
+.card-body p {
+  margin: 0 0 1.5rem 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* --- 6. BUTTONS --- */
+.card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.button.primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+.button.primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.button.secondary {
+  background-color: #e2e8f0;
+  color: var(--text-main);
+}
+.button.secondary:hover {
+  background-color: #cbd5e1;
+}
+
+.button.danger {
+  background-color: #fee2e2;
+  color: var(--danger-color);
+}
+.button.danger:hover {
+  background-color: #fecaca;
+}
+
+/* --- 7. FORMS (Add/Edit) --- */
+.form-container {
+  max-width: 500px;
+  margin: 0 auto; /* Centers the form on the page */
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  padding: 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: 2px solid var(--primary-color);
+  border-color: transparent;
+}
