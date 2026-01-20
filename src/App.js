@@ -11,19 +11,14 @@ export default function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        {/* Route 1: Home page with instructions */}
         <Route path="/" element={<Home />} />
 
-        {/* Route 2: Display all cards */}
         <Route path="/cards" element={<CardList />} />
 
-        {/* Route 3: Add a new card */}
         <Route path="/cards/new" element={<AddCard />} />
 
-        {/* Route 4: Edit an existing card (uses ID) */}
         <Route path="/cards/:id/edit" element={<EditCard />} />
 
-        {/* Redirect any unknown URL back to Home */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>

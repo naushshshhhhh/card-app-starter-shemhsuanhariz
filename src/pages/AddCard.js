@@ -14,7 +14,6 @@ export default function AddCard() {
 
     try {
       await addCard(values);
-      // On success, go back to the list
       navigate("/cards");
     } catch (err) {
       setError("Failed to add card. Please try again.");

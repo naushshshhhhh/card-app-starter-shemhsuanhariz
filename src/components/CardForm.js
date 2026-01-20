@@ -48,7 +48,6 @@ export default function CardForm({ initialValues, onSubmit, busy, error }) {
         />
       </div>
 
-      {/* NEW: Image Preview Section */}
       {values.card_pic && (
         <div style={{ marginTop: "10px", textAlign: "center" }}>
           <label style={{ display: "block", marginBottom: "5px", fontSize: "0.8rem", color: "#64748b" }}>
@@ -64,7 +63,6 @@ export default function CardForm({ initialValues, onSubmit, busy, error }) {
               border: "1px solid #e2e8f0",
               objectFit: "contain"
             }} 
-            // Hides the broken image icon if the URL is invalid
             onError={(e) => e.target.style.display = 'none'}
             onLoad={(e) => e.target.style.display = 'block'}
           />
