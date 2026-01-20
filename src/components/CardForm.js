@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 
 export default function CardForm({ initialValues, onSubmit, busy, error }) {
-  // Initialize state with props or default empty strings
   const [values, setValues] = useState({
     card_name: "",
     card_pic: "",
   });
 
-  // If initialValues change (e.g. data loaded in EditCard), update state
   useEffect(() => {
     if (initialValues) {
       setValues(initialValues);
@@ -50,10 +48,32 @@ export default function CardForm({ initialValues, onSubmit, busy, error }) {
         />
       </div>
 
-      {/* NEW: Display error message if it exists */}
-      {error && <div className="error-message" style={{color: 'red', marginBottom: '10px'}}>{error}</div>}
+      {/* NEW: Image Preview Section */}
+      {values.card_pic && (
+        <div style={{ marginTop: "10px", textAlign: "center" }}>
+          <label style={{ display: "block", marginBottom: "5px", fontSize: "0.8rem", color: "#64748b" }}>
+            Image Preview:
+          </label>
+          <img 
+            src={values.card_pic} 
+            alt="Preview" 
+            style={{ 
+              maxWidth: "100%", 
+              maxHeight: "200px", 
+              borderRadius: "8px", 
+              border: "1px solid #e2e8f0",
+              objectFit: "contain"
+            }} 
+            // Hides the broken image icon if the URL is invalid
+            onError={(e) => e.target.style.display = 'none'}
+            onLoad={(e) => e.target.style.display = 'block'}
+          />
+        </div>
+      )}
 
-      <button type="submit" disabled={busy} className="button primary">
+      {error && <div className="error-message" style={{color: 'red', marginTop: '10px'}}>{error}</div>}
+
+      <button type="submit" disabled={busy} className="button primary" style={{marginTop: '20px'}}>
         {busy ? "Saving..." : "Submit"}
       </button>
     </form>
