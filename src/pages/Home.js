@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
 
 export default function Home() {
-  /* TODO: Design and complete the Home page
-    - display instructions
-    - link to Cards page
-    - style as a landing page */
-  return <main></main>;
+  return (
+    <main className="home-container">
+      <h1>Welcome to the Card App</h1>
+      <p>
+        This application allows you to manage a collection of cards. 
+        You can view, add, update, and delete cards from the database.
+      </p>
+      <Link to="/cards" className="button primary">
+        View All Cards
+      </Link>
+    </main>
+  );
 }

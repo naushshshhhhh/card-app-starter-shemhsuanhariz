@@ -4,11 +4,45 @@ import CardForm from "../components/CardForm";
 import { getCards, updateCard } from "../services/api";
 
 export default function EditCard() {
-  /* TODO: Complete the EditCard page
-    - display a form for editing a card (use the CardForm component to display the form)
-    - handle form submission to call updateCard API
-    - handle loading, busy, and error states
-    - style as a form UI */
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [initialValues, setInitialValues] = useState(null);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
 
-  return <main></main>;
+  useEffect(() => {
+    async function loadCard() {
+      try {
+        const cards = await getCards();
+        const card = cards.find((c) => String(c.id) === id);
+        if (card) setInitialValues(card);
+        else setError("Card not found.");
+      } catch (err) {
+        setError("Failed to fetch card details.");
+      }
+    }
+    loadCard();
+  }, [id]);
+
+  async function handleSubmit(values) {
+    setBusy(true);
+    try {
+      await updateCard(id, values);
+      navigate("/cards");
+    } catch (err) {
+      setError("Failed to update card.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  if (error) return <p>{error}</p>;
+  if (!initialValues) return <p>Loading card data...</p>;
+
+  return (
+    <main className="form-container">
+      <h1>Edit Card</h1>
+      <CardForm initialValues={initialValues} onSubmit={handleSubmit} busy={busy} />
+    </main>
+  );
 }
