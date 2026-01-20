@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function CardForm({ initialValues, onSubmit, busy }) {
+export default function CardForm({ initialValues, onSubmit, busy, error }) {
   // Initialize state with props or default empty strings
   const [values, setValues] = useState({
     card_name: "",
@@ -49,6 +49,9 @@ export default function CardForm({ initialValues, onSubmit, busy }) {
           required
         />
       </div>
+
+      {/* NEW: Display error message if it exists */}
+      {error && <div className="error-message" style={{color: 'red', marginBottom: '10px'}}>{error}</div>}
 
       <button type="submit" disabled={busy} className="button primary">
         {busy ? "Saving..." : "Submit"}
