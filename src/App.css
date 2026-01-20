@@ -40,6 +40,11 @@ body {
   font-size: 1.1rem;
 }
 
+.navbar a.active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}
+
 .navbar a:hover {
   color: var(--primary-color);
 }
@@ -187,4 +192,11 @@ h1 {
 .form-group input:focus {
   outline: 2px solid var(--primary-color);
   border-color: transparent;
+}
+
+.home-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
 }
