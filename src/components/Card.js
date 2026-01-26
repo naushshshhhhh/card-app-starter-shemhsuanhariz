@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 export default function Card({ card, onDelete, busy }) {
   return (
     <div className="card">
-      {/* Display the image if it exists */}
       {card.card_pic && (
         <img 
           src={card.card_pic} 
@@ -16,12 +15,10 @@ export default function Card({ card, onDelete, busy }) {
         <p><small>ID: {card.id}</small></p>
         
         <div className="card-actions">
-          {/* FIXED: Updated URL to match App.js route */}
           <Link to={`/cards/${card.id}/edit`} className="button secondary">
             Edit
           </Link>
 
-          {/* Delete button */}
           <button 
             onClick={() => onDelete(card)} 
             disabled={busy}

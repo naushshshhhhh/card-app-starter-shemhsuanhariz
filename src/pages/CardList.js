@@ -43,7 +43,6 @@ export default function CardList() {
 
   return (
     <div className="page">
-      {/* Added Header with "Add Card" button */}
       <div className="header-row" style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'20px'}}>
         <h1>My Cards</h1>
         <button 
