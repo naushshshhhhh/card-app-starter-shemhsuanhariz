@@ -4,24 +4,23 @@ import Home from "./pages/Home";
 import CardList from "./pages/CardList";
 import AddCard from "./pages/AddCard";
 import EditCard from "./pages/EditCard";
-import Login from "./pages/Login"; // <--- 1. IMPORT LOGIN COMPONENT
 import "./App.css";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      
-      {/* 2. ADD ROUTES WRAPPER HERE */}
       <Routes>
-        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
+
         <Route path="/cards" element={<CardList />} />
+
         <Route path="/cards/new" element={<AddCard />} />
+
         <Route path="/cards/:id/edit" element={<EditCard />} />
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-      
     </BrowserRouter>
   );
 }

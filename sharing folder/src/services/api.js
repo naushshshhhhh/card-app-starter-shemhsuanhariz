@@ -1,23 +1,16 @@
 const API_URL = process.env.REACT_APP_API_URL || "";
 
-// 1. Rename to a clearer name and use it consistently
-function getAuthHeader() {
+function setHEADER() {
   const token = localStorage.getItem("token");
-  return token ? { Authorization: `Bearer ${token}` } : {};
+  return token ? {Authorization: `Bearer ${token}`} : {};
 }
 
 export async function login(credentials) {
-  const res = await fetch(`${API_URL}/login`, {
+  return fetch(`${API_URL}/login`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(credentials), // <--- FIXED TYPO (was 'bosy')
+    headers: {"Content-Type" : "application/json"},
+    bosy: JSON.stringify(credentials),
   });
-  // Add error handling consistent with other functions
-  if (!res.ok) {
-    const errorData = await res.json().catch(() => ({}));
-    throw new Error(errorData.message || `HTTP ${res.status}`);
-  }
-  return res.json();
 }
 
 export async function getCards() {
@@ -31,7 +24,6 @@ export async function addCard(card) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      ...getAuthHeader(), // <--- FIXED FUNCTION NAME (matches line 4)
     },
     body: JSON.stringify(card),
   });
@@ -44,7 +36,6 @@ export async function updateCard(id, card) {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      ...getAuthHeader(), // <--- ADDED TOKEN HERE
     },
     body: JSON.stringify(card),
   });
@@ -55,9 +46,6 @@ export async function updateCard(id, card) {
 export async function deleteCard(id) {
   const res = await fetch(`${API_URL}/deletecard/${id}`, {
     method: "DELETE",
-    headers: {
-      ...getAuthHeader(), // <--- ADDED TOKEN HERE
-    },
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
