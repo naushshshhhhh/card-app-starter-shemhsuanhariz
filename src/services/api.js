@@ -10,13 +10,19 @@ export async function login(credentials) {
   const res = await fetch(`${API_URL}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(credentials), // <--- FIXED TYPO (was 'bosy')
+    body: JSON.stringify(credentials),
   });
-  // Add error handling consistent with other functions
+
+  // Check if request failed
   if (!res.ok) {
+    // 1. Try to parse the JSON body of the error response
     const errorData = await res.json().catch(() => ({}));
-    throw new Error(errorData.message || `HTTP ${res.status}`);
+    
+    // 2. Throw the specific message from backend (check both 'message' and 'error' keys)
+    //    If neither exists, fall back to the status code.
+    throw new Error(errorData.message || errorData.error || `HTTP ${res.status}`);
   }
+
   return res.json();
 }
 

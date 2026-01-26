@@ -2,16 +2,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  
-  // 1. Retrieve the token from local storage
   const token = localStorage.getItem("token");
 
-  // 2. Define the logout function
   function handleLogout() {
-    localStorage.removeItem("token"); // Remove the token
-    navigate("/login"); // Redirect to login page
-    // Optional: Reload to update UI if state isn't global
-    // window.location.reload(); 
+    localStorage.removeItem("token");
+    navigate("/login");
   }
 
   return (
@@ -32,6 +27,7 @@ export default function Navbar() {
         </NavLink>
 
         {token ? (
+          // Added className="logout-btn" here
           <button onClick={handleLogout} className="logout-btn">
             Logout
           </button>

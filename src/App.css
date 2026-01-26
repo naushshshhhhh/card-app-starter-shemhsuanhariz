@@ -70,6 +70,25 @@ body {
   color: var(--primary-color);
 }
 
+/* Styling to make the Logout button look like a navbar link */
+.logout-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  
+  /* Inherit fonts to match your specific typography */
+  font-family: inherit;
+  font-size: 1.1rem;       /* Matches your .navbar a size */
+  font-weight: 600;        /* Matches your .navbar a weight */
+  color: var(--text-main); /* Matches your .navbar a color */
+  transition: color 0.2s;
+}
+
+.logout-btn:hover {
+  color: var(--primary-color); /* Matches your link hover color */
+}
+
 .page {
   max-width: 1000px;
   margin: 0 auto;
