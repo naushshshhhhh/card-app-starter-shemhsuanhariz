@@ -38,18 +38,21 @@ export default function EditCard() {
     }
   }
 
-  if (!initialValues && !error) return <p>Loading card data...</p>;
-  if (!initialValues && error) return <p>{error}</p>;
+  if (!initialValues && !error) return <p className="page">Loading card data...</p>;
+  if (!initialValues && error) return <p className="page error-message">{error}</p>;
 
   return (
-    <main className="form-container">
-      <h1>Edit Card</h1>
-      <CardForm 
-        initialValues={initialValues} 
-        onSubmit={handleSubmit} 
-        busy={busy} 
-        error={error} 
-      />
+    <main className="page centered-container">
+              <div className="form-container">
+        <h1>Edit Card</h1>
+        <CardForm 
+          initialValues={initialValues} 
+          onSubmit={handleSubmit} 
+          busy={busy} 
+          error={error} 
+        />
+      </div>
+      
     </main>
   );
 }
