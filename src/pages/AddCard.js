@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"; // <--- 1. Import useEffect
+import { useState, useEffect } from "react"; 
 import { useNavigate } from "react-router-dom";
 import { addCard } from "../services/api";
 import CardForm from "../components/CardForm";
@@ -8,7 +8,6 @@ export default function AddCard() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
-  // <--- 2. Add the useEffect hook here
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {

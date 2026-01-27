@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import CardList from "./pages/CardList";
 import AddCard from "./pages/AddCard";
 import EditCard from "./pages/EditCard";
-import Login from "./pages/Login"; // <--- 1. IMPORT LOGIN COMPONENT
+import Login from "./pages/Login"; 
 import "./App.css";
 
 export default function App() {
@@ -12,7 +12,6 @@ export default function App() {
     <BrowserRouter>
       <Navbar />
       
-      {/* 2. ADD ROUTES WRAPPER HERE */}
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />

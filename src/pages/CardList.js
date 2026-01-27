@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Added for navigation
+import { useNavigate } from "react-router-dom";
 import Card from "../components/Card";
 import { getCards, deleteCard } from "../services/api";
 
@@ -7,7 +7,7 @@ export default function CardList() {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const navigate = useNavigate(); // Hook to change pages
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     async function loadData() {
@@ -24,14 +24,11 @@ export default function CardList() {
     loadData();
   }, []);
 
-  // FIXED: Accepts the whole 'card' object because Card.js sends 'card', not 'id'
   async function handleDelete(card) {
     if (!window.confirm(`Delete ${card.card_name}?`)) return;
     
     try {
-      // Use card.id here
       await deleteCard(card.id);
-      // Remove it from the local list so the UI updates instantly
       setCards((prevCards) => prevCards.filter((c) => c.id !== card.id));
     } catch (err) {
       alert("Failed to delete card.");

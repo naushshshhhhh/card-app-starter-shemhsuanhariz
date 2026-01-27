@@ -1,6 +1,5 @@
 const API_URL = process.env.REACT_APP_API_URL || "";
 
-// 1. Rename to a clearer name and use it consistently
 function getAuthHeader() {
   const token = localStorage.getItem("token");
   return token ? { Authorization: `Bearer ${token}` } : {};
@@ -13,13 +12,9 @@ export async function login(credentials) {
     body: JSON.stringify(credentials),
   });
 
-  // Check if request failed
   if (!res.ok) {
-    // 1. Try to parse the JSON body of the error response
     const errorData = await res.json().catch(() => ({}));
     
-    // 2. Throw the specific message from backend (check both 'message' and 'error' keys)
-    //    If neither exists, fall back to the status code.
     throw new Error(errorData.message || errorData.error || `HTTP ${res.status}`);
   }
 
@@ -37,7 +32,7 @@ export async function addCard(card) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      ...getAuthHeader(), // <--- FIXED FUNCTION NAME (matches line 4)
+      ...getAuthHeader(),
     },
     body: JSON.stringify(card),
   });
@@ -50,7 +45,7 @@ export async function updateCard(id, card) {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      ...getAuthHeader(), // <--- ADDED TOKEN HERE
+      ...getAuthHeader(),
     },
     body: JSON.stringify(card),
   });
@@ -62,7 +57,7 @@ export async function deleteCard(id) {
   const res = await fetch(`${API_URL}/deletecard/${id}`, {
     method: "DELETE",
     headers: {
-      ...getAuthHeader(), // <--- ADDED TOKEN HERE
+      ...getAuthHeader(), 
     },
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);

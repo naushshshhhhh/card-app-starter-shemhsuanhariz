@@ -12,22 +12,17 @@ export default function Login() {
     async function handleSubmit(e) {
         e.preventDefault();
         setBusy(true);
-        setError(""); // Clear previous errors
+        setError(""); 
 
         try {
-            // 1. Call login. (If api.js is set up correctly, 'data' is the JSON object)
             const data = await login({ username, password });
             
-            // 2. Save token
             localStorage.setItem("token", data.token);
             
-            // 3. Navigate
-            navigate("/cards/new"); // Or navigate("/cards")
+            navigate("/cards/new");
             
         } catch (e2) {
             console.error(e2);
-            // --- FIX IS HERE ---
-            // Use the actual error message from the backend, or fallback to "Login failed"
             setError(e2.message || "Login failed"); 
         } finally {
             setBusy(false);
