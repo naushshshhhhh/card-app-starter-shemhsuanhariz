@@ -30,35 +30,38 @@ export default function Login() {
     }
 
     return (
-        <main className="page form-container">
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit} className="card-form">
-                <div className="form-group">
-                    <label>Username</label>
-                    <input 
-                        value={username} 
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder="demo"
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Password</label>
-                    <input 
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)}
-                        type="password"
-                        placeholder="123" 
-                        required
-                    />
-                </div>
-                
-                {error ? <p style={{ color: "crimson" }}>{error}</p> : null}
-                
-                <button disabled={busy} type="submit" className="button primary">
-                    {busy ? "Logging in..." : "Login"}
-                </button>
-            </form>
+        <main className="page centered-container">
+            
+            <div className="form-container">
+                <h2>Login</h2>
+                <form onSubmit={handleSubmit} className="card-form">
+                    <div className="form-group">
+                        <label>Username</label>
+                        <input 
+                            value={username} 
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder="demo"
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input 
+                            value={password} 
+                            onChange={(e) => setPassword(e.target.value)}
+                            type="password"
+                            placeholder="123" 
+                            required
+                        />
+                    </div>
+                    
+                    {error ? <p style={{ color: "crimson" }}>{error}</p> : null}
+                    
+                    <button disabled={busy} type="submit" className="button primary">
+                        {busy ? "Logging in..." : "Login"}
+                    </button>
+                </form>
+            </div>
         </main>
     );
 }
