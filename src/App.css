@@ -209,10 +209,12 @@ h1, h2, h3, h4 {
 
 .card img {
   width: 100%;
-  height: 220px;
-  object-fit: cover;
+  height: auto; 
+  aspect-ratio: 2.5 / 3.5; 
+  object-fit: contain; 
   border-bottom: 1px solid var(--border-color);
   filter: contrast(95%) sepia(15%);
+  background-color: var(--text-main); 
 }
 
 .card-body { padding: 1.5rem; flex-grow: 1; }
